@@ -1,0 +1,184 @@
+.profile-container {
+    margin-top: 110px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-header {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.profile-banner {
+    position: relative;
+    height: 200px;
+    background: #f0f2f5;
+}
+
+.profile-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-picture-container {
+    position: absolute;
+    bottom: -60px;
+    left: 20px;
+    display: flex;
+    align-items: flex-end;
+}
+
+#profilePicture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    background: white;
+}
+
+.profile-actions {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.profile-info {
+    padding: 80px 20px 20px;
+}
+
+.profile-info h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.profile-bio {
+    margin: 10px 0;
+    color: #65676B;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.profile-stats span {
+    color: #65676B;
+}
+
+.profile-tabs {
+    display: flex;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.tab-btn {
+    padding: 15px 20px;
+    border: none;
+    background: none;
+    font-weight: 500;
+    color: #65676B;
+    cursor: pointer;
+    position: relative;
+}
+
+.tab-btn.active {
+    color: #3a1c80;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #3a1c80;
+}
+
+/* Profile action buttons */
+.action-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.edit-profile-btn {
+    background: #3a1c80;
+    color: white;
+}
+
+.add-friend-btn {
+    background: #e4e6eb;
+    color: #050505;
+}
+
+/* Edit Profile Modal Styles */
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.edit-images {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.banner-edit, .profile-pic-edit {
+    position: relative;
+}
+
+.banner-edit img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.profile-pic-edit img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.save-btn {
+    background: #3a1c80;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}

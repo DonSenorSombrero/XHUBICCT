@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IHUB Home</title>
+    <link rel="stylesheet" href="css/IHUBHome.css" />
+    <style>
+      #editModalTextArea {
+        resize: none;
+        border: none;
+        width: 95%;
+        overflow: hidden;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Navigation Bar -->
+    <nav class="fb-navbar">
+      <div class="fb-navbar-left">
+        <div class="logo">
+          <img src="Images/Logo Full.png" alt="Logo" />
+        </div>
+      </div>
+      <div class="fb-navbar-center">
+        <button class="nav-btn active" id="homeBtn">
+          <img src="Images/SelectedHomeIMG.png" alt="Home" />
+        </button>
+        <button class="nav-btn" id="questionBtn">
+          <img src="Images/HelpIMG.png" alt="Question" />
+        </button>
+        <button class="nav-btn" id="portalBtn">
+          <img src="Images/PortalIMG.png" alt="Portal" />
+        </button>
+      </div>
+      <div class="fb-navbar-right">
+        <button class="utility-btn">
+          <img src="Images/3LinesUIMG.png" alt="Menu" />
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="fb-container">
+      <!-- Left Sidebar -->
+      <div class="fb-sidebar-left">
+        <a href="#" class="sidebar-link" id="profileLink">
+          <div class="sidebar-item">
+            <img src="Images/ProfileIMG.png" alt="Profile" class="sidebar-icon" />
+            <span>Your Profile</span>
+          </div>
+        </a>
+        <!-- Add more sidebar items as needed -->
+      </div>
+
+      <!-- Main Feed -->
+      <div class="fb-feed">
+        <!-- Create Post Box -->
+        <div class="create-post">
+          <div class="create-post-header">
+            <img
+              src="Images/ProfileIMG.png"
+              alt="Profile"
+              class="user-avatar"
+            />
+            <button id="openModalBtn" class="post-input-btn">
+              What's on your mind?
+            </button>
+          </div>
+          <div class="create-post-actions">
+            <button class="post-action-btn" id="imageBtn">
+              <img src="Images/ImageInIMG.png" alt="Photo" />
+              <span>Photo</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Posts Container -->
+        <div id="postsContainer" class="posts-container">
+          <!-- Posts will be dynamically added here -->
+        </div>
+      </div>
+
+      <!-- Right Sidebar -->
+      <div class="fb-sidebar-right">
+        <div class="sidebar-item">
+          <img src="Images/ProfileIMG.png" alt="Profile" class="sidebar-icon" />
+          <span>Suggested Friends</span>
+        </div>
+        <!-- Add more sidebar items as needed -->
+      </div>
+    </div>
+
+    <!-- Post Creation Modal -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Create Post</h2>
+          <button class="close" id="closeModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="user-info">
+            <img
+              src="Images/ProfileIMG.png"
+              alt="Profile"
+              class="user-avatar"
+            />
+            <span class="user-name" id="currentUserName">Your Name</span>
+          </div>
+          <textarea
+            placeholder="What's on your mind?"
+            id="modalTextArea"
+          ></textarea>
+          <div id="imagePreviewContainer" style="display: none">
+            <img id="imagePreview" alt="Preview" />
+            <button id="removeImage" class="remove-image-btn">&times;</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="modal-footer-left">
+            <input
+              type="file"
+              id="imageInput"
+              accept="image/*"
+              style="display: none"
+            />
+            <button id="imageBtn" class="image-btn">
+              <img src="Images/ImageInIMG.png" alt="Image" />
+            </button>
+          </div>
+          <button id="submitPostModalBtn" class="postm-btn">Post</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Post Modal -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Edit Post</h2>
+          <button class="close" id="closeEditModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="user-info">
+            <img
+              src="Images/ProfileIMG.png"
+              alt="Profile"
+              class="user-avatar"
+            />
+            <span class="user-name" id="currentUserName">Your Name</span>
+          </div>
+          <textarea id="editModalTextArea" placeholder="What's on your mind?" oninput="autoResize(this)"></textarea>
+          <div id="editImagePreviewContainer" style="display: none">
+            <img id="editImagePreview" alt="Preview" />
+            <button id="removeEditImage" class="remove-image-btn">&times;</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="modal-footer-left">
+            <input type="file" id="editImageInput" accept="image/*" style="display: none">
+          </div>
+          <button id="saveEditModalBtn" class="postm-btn">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Existing Scripts -->
+    <script src="js/IHUBHome.js"></script>
+    <script src="js/IHUBHomeUI.js"></script>
+    <script src="js/IHUBHomePosts.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Get elements
+        const openModalBtn = document.getElementById("openModalBtn");
+        const modalTextArea = document.getElementById("modalTextArea");
+        const imageInput = document.getElementById("imageInput");
+        const imageBtn = document.getElementById("imageBtn");
+        const imagePreviewContainer = document.getElementById("imagePreviewContainer");
+        const imagePreview = document.getElementById("imagePreview");
+        const removeImageBtn = document.getElementById("removeImage");
+        let postText = ""; // Store the text
+
+        // Sync text between button and modal
+        openModalBtn.addEventListener("click", () => {
+          modalTextArea.value = postText;
+          // Also fetch user data
+          fetchUserData();
+        });
+
+        modalTextArea.addEventListener("input", (event) => {
+          postText = event.target.value;
+          openModalBtn.textContent = postText || "What's on your mind?";
+        });
+
+        // Fetch user data function
+        async function fetchUserData() {
+          try {
+            const response = await fetch("/api/auth/profile", {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            });
+
+            if (response.ok) {
+              const userData = await response.json();
+              document.querySelectorAll(".user-name").forEach(element => {
+                element.textContent = userData.username;
+              });
+            }
+          } catch (error) {
+            console.error("Error fetching user data:", error);
+          }
+        }
+
+        // Close modal handler
+        document.getElementById("closeModal").addEventListener("click", () => {
+          document.getElementById("modal").style.display = "none";
+        });
+
+        document.getElementById("closeEditModal").addEventListener("click", () => {
+          document.getElementById("editModal").style.display = "none";
+        });
+
+        // Image upload functionality for post creation modal
+        imageBtn.addEventListener("click", () => {
+          imageInput.click();
+        });
+
+        imageInput.addEventListener("change", (event) => {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              imagePreview.src = e.target.result;
+              imagePreviewContainer.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+
+        removeImageBtn.addEventListener("click", () => {
+          imageInput.value = "";
+          imagePreviewContainer.style.display = "none";
+          imagePreview.src = "";
+        });
+
+        // Image upload functionality for edit post modal
+        const editImageInput = document.getElementById('editImageInput');
+        const editImagePreviewContainer = document.getElementById('editImagePreviewContainer');
+        const editImagePreview = document.getElementById('editImagePreview');
+        const removeEditImageBtn = document.getElementById('removeEditImage');
+
+        // Handle image selection
+        editImageInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    editImagePreview.src = e.target.result;
+                    editImagePreviewContainer.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        removeEditImageBtn.addEventListener("click", () => {
+          editImageInput.value = "";
+          editImagePreviewContainer.style.display = "none";
+          editImagePreview.src = "";
+        });
+      });
+
+      function autoResize(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            const username = payload.username;
+            if (username) {
+              document.getElementById("currentUserName").textContent = username;
+            } else {
+              await fetchUserData();
+            }
+          } catch (error) {
+            console.error("Error parsing token:", error);
+            await fetchUserData();
+          }
+        } else {
+          await fetchUserData();
+        }
+
+        async function fetchUserData() {
+          try {
+            const response = await fetch("/api/auth/profile", {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            });
+
+            if (response.ok) {
+              const userData = await response.json();
+              document.getElementById("currentUserName").textContent = userData.username;
+            }
+          } catch (error) {
+            console.error("Error fetching user data:", error);
+          }
+        }
+      });
+    </script>
+    <script>
+      document.getElementById('profileLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        const token = localStorage.getItem('token');
+        if (token) {
+            try {
+                // Parse the token to get user data
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                // Check for both possible ID fields since MongoDB uses ObjectId
+                const userId = payload._id || payload.userId || payload.id;
+                if (userId) {
+                    window.location.href = `/IHUBProfile.html?id=${userId}`;
+                } else {
+                    // If no ID in token, fetch from profile endpoint
+                    fetch('/api/auth/profile', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        const profileId = data._id || data.userId || data.id;
+                        if (profileId) {
+                            window.location.href = `/IHUBProfile.html?id=${profileId}`;
+                        } else {
+                            throw new Error('No user ID found');
+                        }
+                    })
+                    .catch(err => console.error('Error fetching user profile:', err));
+                }
+            } catch (error) {
+                console.error('Error parsing token or fetching profile:', error);
+            }
+        } else {
+            console.error('No token found in localStorage');
+        }
+      });
+    </script>
+  </body>
+</html>

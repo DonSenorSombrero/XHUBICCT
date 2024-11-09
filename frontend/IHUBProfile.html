@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IHUB Profile</title>
+    <link rel="stylesheet" href="css/IHUBHome.css">
+    <link rel="stylesheet" href="css/IHUBProfile.css">
+</head>
+<body>
+    <!-- Keep your existing navbar -->
+    <nav class="fb-navbar">
+        <!-- ... existing navbar code ... -->
+    </nav>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-banner">
+                <img src="Images/DefaultBanner.png" alt="Profile Banner" id="profileBanner">
+                <div class="profile-picture-container">
+                    <img src="Images/ProfileIMG.png" alt="Profile Picture" id="profilePicture">
+                    <div class="profile-actions" id="profileActions">
+                        <!-- Dynamic buttons will be inserted here -->
+                    </div>
+                </div>
+            </div>
+            <div class="profile-info">
+                <h1 id="profileUsername">Username</h1>
+                <p id="profileBio">Bio goes here...</p>
+                <div class="profile-stats">
+                    <span><strong id="postsCount">0</strong> Posts</span>
+                    <span><strong id="friendsCount">0</strong> Friends</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-tabs">
+                <button class="tab-btn active" data-tab="posts">Posts</button>
+                <button class="tab-btn" data-tab="media">Media</button>
+                <button class="tab-btn" data-tab="friends">Friends</button>
+            </div>
+            <div id="postsContainer" class="posts-container">
+                <!-- Posts will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Profile</h2>
+                <button class="close" id="closeEditProfileModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="edit-profile-form">
+                    <div class="edit-images">
+                        <div class="banner-edit">
+                            <img id="bannerPreview" src="Images/DefaultBanner.png" alt="Banner">
+                            <button id="changeBannerBtn">Change Banner</button>
+                            <input type="file" id="bannerInput" hidden accept="image/*">
+                        </div>
+                        <div class="profile-pic-edit">
+                            <img id="profilePicPreview" src="Images/ProfileIMG.png" alt="Profile Picture">
+                            <button id="changeProfilePicBtn">Change Picture</button>
+                            <input type="file" id="profilePicInput" hidden accept="image/*">
+                        </div>
+                    </div>
+                    <div class="edit-info">
+                        <div class="form-group">
+                            <label for="editUsername">Username</label>
+                            <input type="text" id="editUsername" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="editBio">Bio</label>
+                            <textarea id="editBio" placeholder="Write something about yourself..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveProfileBtn" class="save-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/IHUBProfile.js"></script>
+</body>
+</html>

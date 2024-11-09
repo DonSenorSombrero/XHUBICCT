@@ -1,0 +1,1559 @@
+*,
+*::before,
+*::after {
+        box-sizing: border-box;
+}
+
+html, body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+}
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 10px;
+        width: 150px;
+        height: 100%;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        color: white;
+      }
+
+      .sidebar-btn {
+        background-color: transparent;
+        border: none;
+        padding: 10px;
+        margin: 35px 0;
+        cursor: pointer;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      .sidebar-btn img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .logo {
+        position: fixed;
+        align-items: center;
+        right: 86%;
+        top: 5px;
+      }
+
+      .logo img {
+        width: auto;
+      }
+
+      .utility-btn {
+        position: absolute;
+        top: 65px;
+        right: 20px;
+        transform: translateY(-50%);
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .topbar-btn img,
+      .utility-btn img {
+        width: 75px;
+        height: 75px;
+      }
+
+      .sidebar-btn img,
+      .topbar-btn img,
+      .rightbar-btn img,
+      .question-btn img,
+      .utility-btn img {
+        background-color: transparent;
+        padding: 0;
+        display: block;
+      }
+
+      html,
+      body {
+        width: 100vw;
+        overflow-x: hidden;
+      }
+
+      .rightbar {
+        position: sticky; /* Make the right bar follow the screen */
+        top: 100px; /* Offset for the top bar */
+        right: 0;
+        width: 360px; /* Match the width of the left sidebar */
+        background-color: #ffffff; /* Make it white */
+        border-radius: 8px; /* Add rounded corners */
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Add shadow */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        margin: 0;
+      }
+
+      .rightbar-btn {
+        position: absolute;
+        background-color: transparent;
+        border: none;
+        padding: 10px;
+        margin: 25px 0;
+        cursor: pointer;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      .rightbar-btn img {
+        width: 60px;
+        height: auto;
+      }
+
+      button,
+      button img {
+        border: none; /* Remove any borders */
+        outline: none; /* Remove the outline */
+        box-shadow: none; /* Remove shadow */
+      }
+
+      button:focus,
+      button:active,
+      button img:focus,
+      button img:active {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      .post-container {
+        background-color: #f9f9f9;
+        margin-left: auto;
+        margin-right: auto;
+        height: 80px; /* Fixed height */
+        width: 100%; /* Match the width of the create post box */
+        margin-top: 0px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgb(187, 187, 187);
+        border-left: 3px solid black;
+        border-right: 3px solid black;
+        border-top: 3px solid black;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        padding: 0; /* Remove paddings */
+      }
+
+      .post-container img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+        margin-left: 30px;
+      }
+
+      .posts-container {
+        flex: 1;
+        width: 100%; 
+          margin-left: auto;
+            margin-right: auto;
+        background-color: transparent; 
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        border: none; /* Remove borders */
+        min-height: calc(100vh - 60px); /* Extend to the bottom of the screen */
+        gap: 8px; /* Reduce the gap between posts by half */
+      }
+
+      .post {
+        margin-bottom: 8px; /* Reduce the margin between posts by half */
+        padding: 15px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Add shadows */
+        position: relative;
+        width: 100%;
+      }
+
+      .post h3 {
+        margin-bottom: 10px;
+      }
+
+      .post p {
+        font-size: 14px;
+        color: #555;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1001;
+      }
+
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 500px;
+        max-width: 90%;
+        max-height: 80vh;
+        position: relative;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .modal-header {
+        padding-bottom: 16px;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 16px;
+        text-align: center;
+        position: relative;
+      }
+
+      .modal-header h2 {
+        margin: 0;
+        font-size: 20px;
+        color: #1c1e21;
+      }
+
+      .close {
+        position: absolute;
+        top: -5px;
+        right: 0;
+        cursor: pointer;
+        font-size: 24px;
+        color: #666;
+        background: none;
+        border: none;
+        padding: 8px;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .close:hover {
+        background-color: #f0f2f5;
+      }
+
+      .modal-body {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding-right: 10px;
+      }
+
+      #modalTextArea {
+        width: 100%;
+        min-height: 150px;
+        border: none;
+        resize: none;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+        outline: none;
+        font-family: inherit;
+      }
+
+      #imagePreviewContainer {
+        margin: 10px 0;
+        position: relative;
+        text-align: center;
+      }
+
+      #imagePreview {
+        max-width: 100%;
+        max-height: 350px;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+
+      .modal-footer {
+        border-top: 1px solid #ddd;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .postm-btn {
+        background-color: #3a1c80;
+        margin-top: 10px;
+        width: 450px;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 24px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .postm-btn:hover {
+        background-color: #2a1560;
+      }
+      
+      .image-btn {
+        background: none;
+        border: 1px solid grey;
+        padding: 8px;
+        width: 450px;
+        border-radius: 12px; /* Rounded rectangle */
+        cursor: pointer;
+        transition: background-color 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .image-btn img {
+        width: 34px;
+        height: 34px;
+      }
+
+      .image-btn:focus {
+        outline: none;
+        border: 2px solid grey; /* Ensure border remains on focus */
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+
+      .user-name {
+        font-weight: bold;
+        color: #1c1e21;
+      }
+
+      .post-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        padding-right: 10px;
+        position: relative;
+      }
+
+      .post-header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin: 0;
+      }
+
+      .username {
+        font-weight: bold;
+        font-size: 14px;
+        color: #333;
+      }
+
+      .content {
+        margin-left: 50px;
+        margin-right: 10px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      .content p {
+        font-size: 14px;
+        color: #333;
+        line-height: 1.4;
+        margin-bottom: 10px;
+      }
+
+      .content a {
+        color: #3a1c80;
+        text-decoration: none;
+        word-break: break-all;
+      }
+
+      .content a:hover {
+        text-decoration: underline;
+      }
+
+      .post-image {
+        object-fit: cover;
+        border-radius: 8px;
+        margin: 10px 0;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+
+      .post-image {
+        width: 800px;
+        height: auto
+      }
+
+      .post-image:hover {
+        opacity: 0.95
+      }
+
+      .post .content {
+        margin: 10px 0;
+        word-break: break-word;
+      }
+
+      .post .content p {
+        margin-bottom: 10px;
+      }
+
+      .post-image:hover {
+        cursor: pointer;
+      }
+
+      .post-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 10px;
+      }
+
+      .icon-btn {
+        font-size: 20px;
+        color: #666;
+        padding: 5px 10px;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        right: 5px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+      }
+
+      .dropdown-item {
+        padding: 10px 20px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        text-align: left;
+        width: 100%;
+      }
+
+      .dropdown-item:hover {
+        background-color: #f0f0f0;
+      }
+      
+      .utility-dropdown {
+        display: none;
+        position: fixed;
+        top: 120px;
+        right: 20px;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        border-radius: 5px;
+        z-index: 1000;
+      }
+
+      .utility-dropdown button {
+        display: block;
+        width: 100%;
+        padding: 10px 20px;
+        border: none;
+        background: none;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .utility-dropdown button:hover {
+        background-color: #f0f0f0;
+      }
+
+      .post-actions {
+        display: flex;
+        gap: 20px;
+        margin-top: 15px;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+      }
+
+      .action-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .action-btn button {
+        background: none;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+
+      .action-btn img {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.2s;
+      }
+
+      .action-btn button:hover img {
+        transform: scale(1.1);
+      }
+
+      .action-btn span {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .like-btn.liked img {
+        content: url('/Images/LikedIMG.png');
+      }
+
+      .like-btn {
+        transition: transform 0.2s;
+      }
+
+      .like-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .like-btn.liked img {
+        filter: none;
+      }
+
+      .like-count {
+        min-width: 20px;
+        text-align: center;
+      }
+
+      .comments-section {
+        margin-top: 15px;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+      }
+
+      .comment {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        padding: 12px;
+        background-color: #f8f8f8;
+        border-radius: 8px;
+      }
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        margin-bottom: 5px;
+      }
+
+      .comment-header-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .comment-menu-btn {
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        background: none;
+        border: none;
+        font-size: 16px;
+        color: #666;
+        cursor: pointer;
+        padding: 0 5px;
+      }
+
+      .comment-dropdown {
+        position: absolute;
+        right: 0;
+        top: -5px; /* Changed from original position to move it closer to the button */
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+        min-width: 100px; /* Added to ensure consistent width */
+        display: block; /* Ensure it is visible */
+      }
+
+      .comment-content {
+        margin-left: 48px;
+        margin-right: 10px;
+        position: relative;
+      }
+
+      .comment-actions {
+        display: flex;
+        justify-content: flex-start; /* Move like button to the far left */
+        margin-top: 8px;
+        padding-top: 4px;
+        margin-left: 10px; /* Add margin from the comment's borders */
+      }
+
+      .comment-profile-pic {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .comment-content {
+        flex: 1;
+      }
+
+      .username {
+        font-weight: bold;
+        font-size: 13px;
+        color: #333;
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .comment-content p {
+        font-size: 13px;
+        margin: 0;
+      }
+
+      .comment-input-container {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+        align-items: flex-start;
+      }
+
+      .comment-input {
+        flex: 1;
+        min-height: 40px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        padding: 8px 15px;
+        resize: none;
+        font-size: 13px;
+      }
+
+      .comment-submit-btn {
+        padding: 8px 20px;
+        background-color: #3a1c80;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 13px;
+      }
+
+      .comment-submit-btn:hover {
+        background-color: #2a1560;
+      }
+
+      .comment-actions {
+        margin-top: 5px;
+      }
+
+      .comment-action-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: 0; /* Move the like button near the left border */
+      }
+
+      .comment-like-btn {
+        background: none;
+        border: none;
+        padding: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+
+      .comment-like-btn img {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.2s;
+      }
+
+      .comment-like-btn:hover img {
+        transform: scale(1.1);
+      }
+
+      .comment-like-count {
+        font-size: 12px;
+        color: #666;
+        min-width: 15px;
+      }
+
+      .comment-like-btn.liked img {
+        content: url('/Images/LikedIMG.png');
+      }
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+
+      .comment-header-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .comment-menu-btn {
+        background: none;
+        border: none;
+        font-size: 16px;
+        color: #666;
+        cursor: pointer;
+        padding: 0 5px;
+      }
+
+      .comment-dropdown {
+        position: absolute;
+        right: 0;
+        top: -5px; /* Changed from original position to move it closer to the button */
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+        min-width: 100px; /* Added to ensure consistent width */
+      }
+
+      .comment-dropdown button {
+        display: block;
+        width: 100%;
+        padding: 8px 15px;
+        border: none;
+        background: none;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .comment-dropdown button:hover {
+        background-color: #f0f0f0;
+      }
+
+      .comments-section {
+        margin-top: 15px;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+      }
+
+      .comment {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        padding: 12px;
+        background-color: #f8f8f8;
+        border-radius: 8px;
+      }
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        margin-bottom: 5px;
+      }
+
+      .comment-header-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .comment-menu-btn {
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        background: none;
+        border: none;
+        font-size: 16px;
+        color: #666;
+        cursor: pointer;
+        padding: 0 5px;
+      }
+
+      .comment-dropdown {
+        position: absolute;
+        right: 0;
+        top: -5px; /* Changed from original position to move it closer to the button */
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+        min-width: 100px; /* Added to ensure consistent width */
+      }
+
+      .comment-content {
+        margin-left: 48px;
+        margin-right: 10px;
+        position: relative;
+      }
+
+      .comment-footer {
+        display: flex;
+        justify-content: flex-start; /* Move like button to the far left */
+        margin-top: 8px;
+        padding-top: 4px;
+        margin-left: -10px; /* Add margin from the comment's borders */
+      }
+
+      .comment-profile-pic {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .comment-content {
+        flex: 1;
+      }
+
+      .username {
+        font-weight: bold;
+        font-size: 13px;
+        color: #333;
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .comment-content p {
+        font-size: 13px;
+        margin: 0;
+      }
+
+      .comment-input-container {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+        align-items: flex-start;
+      }
+
+      .comment-input {
+        flex: 1;
+        min-height: 40px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        padding: 8px 15px;
+        resize: none;
+        font-size: 13px;
+      }
+
+      .comment-submit-btn {
+        padding: 8px 20px;
+        background-color: #3a1c80;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 13px;
+      }
+
+      .comment-submit-btn:hover {
+        background-color: #2a1560;
+      }
+
+      .comment-actions {
+        margin-top: 5px;
+      }
+
+      .comment-action-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: 0; /* Move the like button near the left border */
+      }
+
+      .comment-like-btn {
+        background: none;
+        border: none;
+        padding: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+
+      .comment-like-btn img {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.2s;
+      }
+
+      .comment-like-btn:hover img {
+        transform: scale(1.1);
+      }
+
+      .comment-like-count {
+        font-size: 12px;
+        color: #666;
+        min-width: 15px;
+      }
+
+      .comment-like-btn.liked img {
+        content: url('/Images/LikedIMG.png');
+      }
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+
+      .comment-header-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .comment-menu-btn {
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: #666;
+        cursor: pointer;
+        padding: 0 5px;
+        margin-right: 12xp;
+      }
+
+      .comment-dropdown {
+        position: absolute;
+        right: 5px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1000;
+      }
+
+      .comment-dropdown button {
+        display: block;
+        width: 100%;
+        padding: 8px 15px;
+        border: none;
+        background: none;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .comment-dropdown button:hover {
+        background-color: #f0f0f0;
+      }
+
+      #imagePreviewContainer {
+        position: relative;
+        display: inline-block;
+        margin: 10px 0;
+      }
+
+      .remove-image-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        transition: background-color 0.2s;
+      }
+
+      .remove-image-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      .image-modal {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .image-modal-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+      .image-modal-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+      }
+
+      .close-image-modal {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      .close-image-modal:hover {
+        color: #ccc;
+      }
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #1c1e21;
+    line-height: 1.34;
+}
+
+/* Facebook-style Navbar */
+.fb-navbar {
+    position: fixed;
+    width: 100%;
+    height: 110px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    z-index: 100;
+}
+
+.fb-navbar-left {
+    flex: 1;
+}
+
+.fb-navbar-left .logo img {
+    height: 100px;
+}
+
+.fb-navbar-center {
+    top: 26px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between; 
+    flex: 2;
+    width: 680px;
+    margin: 0 auto; 
+    gap: 8px;
+}
+
+.fb-navbar-right {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Add 20px spacing to the right */
+}
+
+.utility-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.utility-btn img {
+    width: 30px;
+    height: 30px;
+}
+
+.nav-btn {
+    width: 225px;
+    position: relative;
+    padding: 8px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    top: 10px;
+}
+
+.nav-btn img {
+    width: auto;
+    height: 40px;
+}
+
+.nav-btn:hover {
+    background-color: #f2f2f2;
+}
+
+.nav-btn.active {
+    position: relative;
+}
+
+.nav-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #3a1c80;
+}
+
+/* Main Container */
+.fb-container {
+    margin-top: 100px; /* Offset for the topbar height */
+    padding: 20px;
+    gap: 24px;
+    
+}
+
+/* Sidebars */
+.fb-sidebar-left, .fb-sidebar-right {
+    flex: 0 0 360px;
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.fb-sidebar-left {
+    position: fixed;
+    left: 10px;
+    top: 120px; 
+    width: 360px; /* Match the width of the right sidebar */
+    background-color: #ffffff; /* Make it white */
+    border-radius: 8px; /* Add rounded corners */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Add shadow */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    margin: 0;
+}
+
+.fb-sidebar-right {
+    position: fixed;
+    right: 10px;
+    top: 120px; 
+    width: 360px; /* Match the width of the left sidebar */
+    background-color: #ffffff; /* Make it white */
+    border-radius: 8px; /* Add rounded corners */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Add shadow */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    margin: 0;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+
+.sidebar-item:hover {
+    background-color: #f2f2f2;
+}
+
+.sidebar-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+    border-radius: 50%;
+}
+
+/* Main Feed */
+.fb-feed {
+    position: relative;
+    flex: 1;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Create Post Box */
+.create-post {
+    background-color: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.create-post-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.post-input-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: none;
+    background-color: #f0f2f5;
+    text-align: left;
+    color: #65676b;
+    cursor: pointer;
+}
+
+.post-input-btn:hover {
+    background-color: #e4e6e9;
+}
+
+.create-post-actions {
+    display: flex;
+    border-top: 1px solid #e4e6eb;
+    padding-top: 8px;
+    gap: 8px;
+}
+
+.post-action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.post-action-btn:hover {
+    background-color: #f2f2f2;
+}
+
+.post-action-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Posts Container */
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.post {
+    background-color: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Keep your existing modal styles */
+/* ... */
+
+/* Utility Dropdown */
+.utility-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    min-width: 180px;
+    padding: 8px 0;
+    display: none;
+}
+
+/* Add your existing styles for posts, comments, and other components */
+/* ... */
+
+/* ...existing code... */
+
+.post-menu-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+}
+
+.post-menu-btn:hover {
+    background-color: #f0f2f5;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    min-width: 120px;
+    z-index: 1000;
+    display: none;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #1c1e21;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f2f5;
+}
+
+/* ...existing code... */
+
+.post-menu {
+    position: absolute;
+    top: 30px; /* Adjust this value to position the menu properly */
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    min-width: 120px;
+    padding: 8px 0;
+    z-index: 1000;
+    display: none;
+}
+
+.post-menu.show {
+    display: block;
+}
+
+.post-menu button {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #1c1e21;
+    cursor: pointer;
+}
+
+.post-menu button:hover {
+    background-color: #f0f2f5;
+}
+
+.post-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* ...existing code... */
+
+.post-dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    min-width: 120px;
+}
+
+.post-header {
+    position: relative;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdown-item.delete-post {
+    color: #dc3545;
+}
+
+.dropdown-item.report-post {
+    color: #856404;
+}
+
+/* ...existing code... */
+
+.post-dropdown {
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 10;
+}
+
+.post-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.post-dropdown button:hover {
+    background-color: #f0f0f0;
+}
+
+/* ...existing code... */
+
+.edit-image-preview {
+    position: relative;
+    margin-top: 10px;
+    max-width: 100%;
+}
+
+.edit-image-preview img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.edit-image-preview .remove-image-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-image-preview .remove-image-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* ...existing code... */
+
+.comment-btn.active {
+  background-color: #f0f0f0;
+}
+
+/* ...existing code... */
+
+.comment-dropdown {
+    position: absolute;
+    right: 0;
+    top: 20px; /* Adjusted to position it below the button */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    min-width: 100px; /* Ensure consistent width */
+    display: block; /* Ensure it is visible */
+}
+
+.comment-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 8px 15px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.comment-dropdown button:hover {
+    background-color: #f0f0f0;
+}
+
+/* ...existing code... */

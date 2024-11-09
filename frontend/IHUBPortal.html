@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IHUB Transactions</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 10px;
+        width: 150px;
+        height: 100%;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        background-color: white;
+      }
+
+      .sidebar-btn {
+        background-color: transparent;
+        border: none;
+        padding: 10px;
+        margin: 35px 0;
+        cursor: pointer;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      .sidebar-btn img {
+        width: 50px;
+        height: 50px;
+      }
+
+ .topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  z-index: 1000;
+}
+
+      .topbar-buttons {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 5;
+        gap: 120px;
+      }
+      
+      .logo {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        right: 80%;
+
+      }
+
+      .logo img {
+        width: 300px;
+      }
+
+      .utility-btn {
+        position: absolute;
+        top: 65px;
+        right: 20px;
+        transform: translateY(-50%);
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .topbar-btn img,
+      .utility-btn img {
+        width: 75px;
+        height: 75px;
+      }
+
+      .home-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        height: auto;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        background-color: white;
+      }
+
+      .home-btn img {
+        width: 150px;
+        height: auto;
+      }
+
+      .question-btn {
+         display: flex;
+    justify-content: center;
+    align-items: center;
+        width: 150px;
+        height: auto;
+        outline: none;
+        background-color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      .question-btn img {
+        width: 150px;
+        height: auto;
+      }
+
+      .portal-btn {
+         display: flex;
+    justify-content: center;
+    align-items: center;
+        width: 150px;
+        height: auto;
+        background-color: white;
+        outline: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .portal-btn img {
+        width: 150px;
+        height: auto;
+      }
+
+      .sidebar-btn img,
+      .topbar-btn img,
+      .rightbar-btn img,
+      .question-btn img,
+      .utility-btn img {
+        background-color: transparent;
+        padding: 0;
+        display: block;
+      }
+
+      html,
+      body {
+        width: 100vw;
+        overflow-x: hidden;
+      }
+
+      .rightbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: 100vh;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        margin: 0;
+      }
+
+      .rightbar-btn {
+        position: absolute;
+        background-color: transparent;
+        border: none;
+        padding: 10px;
+        margin: 25px 0;
+        cursor: pointer;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      .rightbar-btn img {
+        width: 60px;
+        height: auto;
+      }
+
+      button,
+      button img {
+        border: none; /* Remove any borders */
+        outline: none; /* Remove the outline */
+        box-shadow: none; /* Remove shadow */
+      }
+
+      button:focus,
+      button:active,
+      button img:focus,
+      button img:active {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+
+     .button-container {
+        position: relative;
+        margin-top: 9%;
+        margin-right: auto;
+        margin-left: auto;
+        width: 70%;
+        height: 65vh;;
+        padding: 40px; 
+        border-top: 3px solid black;
+        border-right: 3px solid black;
+        border-left: 3px solid black;
+        border-bottom: none;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 0px 5px;
+        background-color: #f0f0f0;
+        align-items: center;
+      }
+
+       .button-container .label {
+          position: absolute;
+          top: 10px;
+          left: 20px;
+          font-size: 20px;
+          font-weight: bold;
+          color: black;
+        }
+
+        .button {
+          margin-top: 1px;
+            width: auto;
+            height: 130px;
+            background-color: rgb(0, 0, 192);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 20px;
+        }
+
+        .button.clicked {
+            background-color: red;
+        }
+
+        table {
+        table-layout: fixed;
+        position: relative;
+        border-right: 3px solid black;
+        border-left: 3px solid black;
+        border-top: none;
+        border-collapse: collapse;
+        height: 30px;
+        width: 70%;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: auto;
+        border-collapse: collapse;
+        }
+    
+        th, td {
+        text-align: left;
+        text-indent: 10px;
+        padding: 8px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: auto;
+        }     
+
+        tr:nth-child(even){background-color: #f2f2f2}
+
+        th {
+         background-color:red;
+         color: white;
+         border-right: solid #f0f0f0;
+        }
+        th:last-child {
+          border-right: 3px black;
+        }
+        .tally-row td {
+        font-weight: bold;
+        background-color: #f2f2f2; /* Optional: light background for emphasis */
+       }
+       .payment {
+        position: relative;
+        margin-right: auto;
+        margin-left: auto;
+        width: 70%;
+        height: 80px;
+        padding: 10px; 
+        border-right: 3px solid black;
+        border-left: 3px solid black;
+        border-bottom: 3px solid black;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        background-color: #f0f0f0;
+        align-items: center;
+      }
+      .modal-button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: rgb(0, 0, 192); 
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-button:hover {
+    background-color: rgb(0, 0, 148) 
+}
+
+.modal {
+    display: none; /* Keep modal hidden initially */
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1002;
+}
+
+.modal-content {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #007bff; /* Blue background for title bar */
+    padding: 10px 20px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: white;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.modal-body {
+    padding: 20px;
+    text-align: left;
+}
+
+.modal-field {
+    margin-bottom: 15px;
+}
+
+.modal-field label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.modal-info {
+    padding: 10px;
+    background-color: #e0e0e0; /* Light gray background */
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.generate-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    background-color: #007bff; /* Blue button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.generate-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+       .reference-number {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .reference-label {
+            background-color: rgb(0, 0, 192);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .reference-value {
+            background-color: yellow;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+        .modal-backdrop {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 1001; /* Ensure it sits above other content but below the modal */
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="logo">
+        <img src="Images/Logo Full.png" alt="Logo" />
+      </div>
+      <div class="topbar-buttons">
+        <button class="topbar-btn home-btn" id="homeBtn">
+          <img src="Images/HomeIMG.png" alt="Home" />
+        </button>
+        <button class="topbar-btn question-btn" id="questionBtn">
+          <img src="Images/HelpIMG.png" alt="Question" />
+        </button>
+        <button class="topbar-btn portal-btn" id="portalBtn">
+          <img src="Images/SelectedPortalIMG.png" alt="Portal" />
+        </button>
+      </div>
+      <button class="utility-btn">
+        <img src="Images/3LinesUIMG.png" alt="Utility" />
+      </button>
+    </div>
+
+    <div class="button-container">
+    <div class="label">Online Payment</div>
+    <button class="button" data-name="Downpayment" data-value="720" onclick="handleButtonClick(this)">Downpayment</button>
+    <button class="button" data-name="First Installment" data-value="1200" onclick="handleButtonClick(this)">First Installment</button>
+    <button class="button" data-name="Second Installment" data-value="1200" onclick="handleButtonClick(this)">Second Installment</button>
+    <button class="button" data-name="Third Installment" data-value="1200" onclick="handleButtonClick(this)">Third Installment</button>
+    <button class="button" data-name="Fourth Installment" data-value="50" onclick="handleButtonClick(this)">Fourth Installment</button>
+
+    <button class="button" data-name="Downpayment" data-value="720" onclick="handleButtonClick(this)">Downpayment</button>
+    <button class="button" data-name="First Installment" data-value="1200" onclick="handleButtonClick(this)">Certificate of Enrollment</button>
+    <button class="button" data-name="Second Installment" data-value="1200" onclick="handleButtonClick(this)">Certificate of GM</button>
+    <button class="button" data-name="Third Installment" data-value="1200" onclick="handleButtonClick(this)">Certificate of Graduation</button>
+    <button class="button" data-name="Fourth Installment" data-value="50" onclick="handleButtonClick(this)">Diploma</button>
+
+    <button class="button" data-name="Downpayment" data-value="720" onclick="handleButtonClick(this)">Downpayment</button>
+    <button class="button" data-name="First Installment" data-value="1200" onclick="handleButtonClick(this)">Honorable Dismissal</button>
+    <button class="button" data-name="Second Installment" data-value="1200" onclick="handleButtonClick(this)">ID Lace</button>
+    <button class="button" data-name="Third Installment" data-value="1200" onclick="handleButtonClick(this)">Lost Library ID</button>
+    <button class="button" data-name="Fourth Installment" data-value="50" onclick="handleButtonClick(this)">Lost School ID</button>
+
+    <button class="button" data-name="Downpayment" data-value="720" onclick="handleButtonClick(this)">Downpayment</button>
+    <button class="button" data-name="First Installment" data-value="1200" onclick="handleButtonClick(this)">Summary of Grades</button>
+    <button class="button" data-name="Second Installment" data-value="1200" onclick="handleButtonClick(this)">Transcript of Records - BACHELOR COURSE</button>
+    <button class="button" data-name="Third Installment" data-value="1200" onclick="handleButtonClick(this)">Uniform GenED</button>
+    <button class="button" data-name="Fourth Installment" data-value="50" onclick="handleButtonClick(this)">Uniform PE</button>
+    </div>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <th style="width: 70%;">Name of Order</th>
+        <th>Amount</th>
+      </tr>
+    </table>
+    </div>
+ <div class="payment">
+        <button id="openModalButton" class="modal-button">Proceed to Payment</button>
+    </div>
+    
+<div id="modalBackdrop" class="modal-backdrop"></div>
+    
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Reference Number Generator</h2>
+            </div>
+          <div class="modal-body">
+    <div class="modal-field">
+        <label>Student Name:</label>
+        <div class="modal-info" id="studentName">[Username]</div>
+    </div>
+    <div class="modal-field">
+        <label>Student ID:</label>
+        <div class="modal-info" id="studentID">[UserID]</div>
+    </div>
+    <div class="modal-field">
+        <label>Campus:</label>
+        <div class="modal-info">Cainta (Main)</div>
+    </div>
+    <div class="modal-field">
+        <label>Total Amount:</label>
+        <div class="modal-info" id="totalAmount">0.00</div>
+    </div>
+    <div class="modal-field">
+        <label>Reference Number:</label>
+        <div id="referenceNumberContainer" style="display: none;">
+            <div id="referenceNumberBox" style="background-color: rgb(0, 0, 192); color: white; padding: 10px; text-align: center; border-radius: 5px;">Reference Number</div>
+            <div id="referenceNumber" style="background-color: yellow; padding: 10px; text-align: center; margin-top: 5px; border-radius: 5px;"></div>
+        </div>
+    </div>
+    <button class="generate-button">Generate Reference No.</button>
+    </div>
+</body>
+</div>
+   <script>
+          document.getElementById("homeBtn").onclick = () => {
+        window.location.href = "IHUBhome.html";
+      };
+
+      document.getElementById("questionBtn").onclick = () => {
+        window.location.href = "IHUBConcerns.html";
+      };
+
+      document.getElementById("portalBtn").onclick = () => {
+        window.location.href = "IHUBportal.html";
+      };
+      
+        document.addEventListener("DOMContentLoaded", function () {
+            const table = document.querySelector("table");
+            const tallyRow = document.createElement("tr");
+            tallyRow.id = "tallyRow";
+            tallyRow.innerHTML = `<td>Total</td><td id="tallyAmount">0.00</td>`;
+            table.appendChild(tallyRow);
+
+            const openModalButton = document.getElementById("openModalButton");
+            const modal = document.getElementById("myModal");
+            const modalBackdrop = document.getElementById("modalBackdrop");
+            const closeModal = document.getElementsByClassName("close")[0];
+            const generateButton = document.querySelector(".generate-button");
+
+            openModalButton.onclick = function () {
+                const tallyAmount = document.getElementById("tallyAmount").textContent;
+                document.getElementById("totalAmount").textContent = tallyAmount;
+                modal.style.display = "block";
+                modalBackdrop.style.display = "block";
+
+                // Reset reference number display
+                document.getElementById("referenceNumberContainer").style.display = "none";
+                generateButton.style.display = "block";
+                document.getElementById("referenceNumber").textContent = '';
+            };
+
+            closeModal.onclick = function () {
+                modal.style.display = "none";
+                modalBackdrop.style.display = "none";
+
+                // Unselect all buttons
+                const buttons = document.querySelectorAll(".button");
+                buttons.forEach(button => {
+                    button.classList.remove("clicked");
+                });
+
+                // Reset table rows except for the header and tally
+                const rows = table.querySelectorAll("tr:not(:first-child):not(:last-child)");
+                rows.forEach(row => {
+                    table.deleteRow(row.rowIndex);
+                });
+
+                // Reset the tally amount
+                document.getElementById("tallyAmount").textContent = "0.00";
+            };
+
+            window.onclick = function (event) {
+                if (event.target === modalBackdrop) {
+                    closeModal.onclick();
+                }
+            };
+
+            generateButton.onclick = function () {
+                const randomNumber = 'CA' + Math.floor(10000000000 + Math.random() * 90000000000);
+                document.getElementById("referenceNumber").textContent = randomNumber;
+                document.getElementById("referenceNumberContainer").style.display = "block";
+                generateButton.style.display = "none"; // Hide button after generating
+            };
+
+            // Handle button clicks
+            const buttons = document.querySelectorAll(".button");
+            buttons.forEach(button => {
+                button.onclick = function () {
+                    handleButtonClick(button);
+                };
+            });
+        });
+
+        function handleButtonClick(button) {
+            button.classList.toggle("clicked");
+            const name = button.getAttribute("data-name");
+            const value = parseFloat(button.getAttribute("data-value"));
+            const table = document.querySelector("table");
+            const tallyRow = document.getElementById("tallyRow");
+            let currentTally = parseFloat(document.getElementById("tallyAmount").textContent);
+
+            if (button.classList.contains("clicked")) {
+                const newRow = document.createElement("tr");
+                newRow.setAttribute("data-button-name", name);
+                newRow.innerHTML = `<td>${name}</td><td>${value}</td>`;
+                table.insertBefore(newRow, tallyRow); // Insert before the tally
+
+                currentTally += value;
+            } else {
+                const rows = table.querySelectorAll("tr");
+                rows.forEach((row) => {
+                    if (row.getAttribute("data-button-name") === name) {
+                        table.removeChild(row);
+                        currentTally -= value; // Adjust tally
+                    }
+                });
+            }
+
+            document.getElementById("tallyAmount").textContent = currentTally.toFixed(2);
+        }
+</script>
+   </body>
+</html>
