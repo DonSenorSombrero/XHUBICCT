@@ -8,28 +8,112 @@
     <link rel="stylesheet" href="css/IHUBProfile.css">
 </head>
 <body>
-    <!-- Keep your existing navbar -->
+    <!-- Navbar from Home -->
     <nav class="fb-navbar">
-        <!-- ... existing navbar code ... -->
+        <div class="fb-navbar-left">
+            <div class="logo">
+                <img src="Images/Logo Full.png" alt="Logo" />
+            </div>
+        </div>
+        <div class="fb-navbar-center">
+            <button class="nav-btn" id="homeBtn">
+                <img src="Images/HomeIMG.png" alt="Home" />
+            </button>
+            <button class="nav-btn" id="questionBtn">
+                <img src="Images/HelpIMG.png" alt="Question" />
+            </button>
+            <button class="nav-btn" id="portalBtn">
+                <img src="Images/PortalIMG.png" alt="Portal" />
+            </button>
+        </div>
+        <div class="fb-navbar-right">
+            <button class="utility-btn">
+                <img src="Images/3LinesUIMG.png" alt="Menu" />
+            </button>
+        </div>
     </nav>
 
+    <!-- Left Sidebar -->
+    <div class="fb-sidebar-left">
+        <a href="#" class="sidebar-link" id="searchLink">
+            <div class="sidebar-item">
+                <img src="Images/SearchIMG.png" alt="Search" class="sidebar-icon" />
+                <span>Search</span>
+            </div>
+        </a>
+        <a href="#" class="sidebar-link" id="notificationLink">
+            <div class="sidebar-item">
+                <img src="Images/NotificationsIMG.png" alt="Notification" class="sidebar-icon" />
+                <span>Notifications</span>
+            </div>
+        </a>
+        <a href="IHUBMessaging.html" class="sidebar-link" id="messageLink">
+            <div class="sidebar-item">
+                <img src="Images/MessageIMG.png" alt="Messages" class="sidebar-icon" />
+                <span>Messages</span>
+            </div>
+        </a>
+        <a href="#" class="sidebar-link" id="profileLink">
+            <div class="sidebar-item">
+                <img src="Images/ProfileIMG.png" alt="Profile" class="sidebar-icon" />
+                <span>Your Profile</span>
+            </div>
+        </a>
+        <!-- Add more sidebar items as needed -->
+    </div>
+
+    <!-- Twitter-style Profile Container -->
     <div class="profile-container">
+        <!-- Add loading state -->
+        <div id="profileLoading" class="loading-state" style="display: none;">
+            <div class="loader">Loading...</div>
+        </div>
+        
+        <!-- Add error state -->
+        <div id="profileError" class="error-state" style="display: none;">
+            <p>Could not load profile</p>
+            <button onclick="window.location.reload()">Retry</button>
+        </div>
+
         <div class="profile-header">
-            <div class="profile-banner">
-                <img src="Images/DefaultBanner.png" alt="Profile Banner" id="profileBanner">
+            <div class="banner-container">
+                <img src="Images/DefaultBanner.png" alt="Profile Banner" id="profileBanner" class="profile-banner">
+                <button class="edit-banner-btn" id="changeBannerBtn" style="display: none;">
+                    <img src="Images/CameraIMG.png" alt="Edit Banner">
+                </button>
                 <div class="profile-picture-container">
-                    <img src="Images/ProfileIMG.png" alt="Profile Picture" id="profilePicture">
-                    <div class="profile-actions" id="profileActions">
-                        <!-- Dynamic buttons will be inserted here -->
+                    <div class="profile-picture-wrapper">
+                        <img src="Images/ProfileIMG.png" alt="Profile Picture" id="profilePicture" class="profile-picture">
+                        <button class="edit-profile-pic-btn" id="changeProfilePicBtn" style="display: none;">
+                            <img src="Images/CameraIMG.png" alt="Edit Picture">
+                        </button>
                     </div>
                 </div>
             </div>
             <div class="profile-info">
-                <h1 id="profileUsername">Username</h1>
-                <p id="profileBio">Bio goes here...</p>
+                <div class="profile-names">
+                    <h1 id="profileDisplayName">Display Name</h1>
+                    <p class="handle" id="profileUsername">@username</p>
+                </div>
+                <p id="profileBio" class="bio">Bio goes here...</p>
                 <div class="profile-stats">
-                    <span><strong id="postsCount">0</strong> Posts</span>
-                    <span><strong id="friendsCount">0</strong> Friends</span>
+                    <a href="#" class="stat-link">
+                        <span class="stat-count" id="postsCount">0</span>
+                        <span class="stat-label">Posts</span>
+                    </a>
+                    <a href="#" class="stat-link">
+                        <span class="stat-count" id="friendsCount">0</span>
+                        <span class="stat-label">Friends</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create action bar with correct structure -->
+        <div class="profile-action-bar">
+            <div class="action-bar-container">
+                <div id="profileActions" class="profile-actions">
+                    <!-- Buttons will be inserted here by JavaScript -->
                 </div>
             </div>
         </div>
@@ -41,7 +125,7 @@
                 <button class="tab-btn" data-tab="friends">Friends</button>
             </div>
             <div id="postsContainer" class="posts-container">
-                <!-- Posts will be loaded here -->
+                <!-- Posts will be loaded here by JavaScript -->
             </div>
         </div>
     </div>
@@ -58,23 +142,34 @@
                     <div class="edit-images">
                         <div class="banner-edit">
                             <img id="bannerPreview" src="Images/DefaultBanner.png" alt="Banner">
-                            <button id="changeBannerBtn">Change Banner</button>
+                            <button class="change-image-btn" id="changeBannerBtn">
+                                <img src="Images/CameraIMG.png" alt="Change Banner">
+                                <span>Change Banner</span>
+                            </button>
                             <input type="file" id="bannerInput" hidden accept="image/*">
                         </div>
                         <div class="profile-pic-edit">
                             <img id="profilePicPreview" src="Images/ProfileIMG.png" alt="Profile Picture">
-                            <button id="changeProfilePicBtn">Change Picture</button>
+                            <button class="change-image-btn" id="changeProfilePicBtn">
+                                <img src="Images/CameraIMG.png" alt="Change Picture">
+                                <span>Change Picture</span>
+                            </button>
                             <input type="file" id="profilePicInput" hidden accept="image/*">
                         </div>
                     </div>
                     <div class="edit-info">
                         <div class="form-group">
+                            <label for="editDisplayName">Display Name</label>
+                            <input type="text" id="editDisplayName" placeholder="Display Name">
+                        </div>
+                        <div class="form-group">
                             <label for="editUsername">Username</label>
-                            <input type="text" id="editUsername" placeholder="Username">
+                            <input type="text" id="editUsername" placeholder="username">
                         </div>
                         <div class="form-group">
                             <label for="editBio">Bio</label>
-                            <textarea id="editBio" placeholder="Write something about yourself..."></textarea>
+                            <textarea id="editBio" placeholder="Write something about yourself..." maxlength="160"></textarea>
+                            <span class="bio-counter">0/160</span>
                         </div>
                     </div>
                 </div>
@@ -86,5 +181,7 @@
     </div>
 
     <script src="js/IHUBProfile.js"></script>
+    <script src="js/IHUBHomeUI.js"></script>
+    <script src="js/IHUBHome.js"></script>
 </body>
 </html>

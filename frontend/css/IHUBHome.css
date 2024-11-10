@@ -1165,7 +1165,7 @@ body {
     position: sticky;
     top: 80px;
     height: calc(100vh - 80px);
-    overflow-y: auto;
+    overflow-y: scroll;
     padding: 8px;
 }
 
@@ -1179,10 +1179,35 @@ body {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Add shadow */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Align items to the left */
     padding: 20px 0;
     margin: 0;
+    gap: 20px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 25%;
+    cursor: pointer;
+    width: 100%; /* Ensure the item takes full width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    justify-content: flex-start; /* Align items to the left */
+    margin-left: 25px; /* Add left margin */
+    font-size: 1.2em; /* Increase size by 1.5x */
+    font-weight: bold; /* Make text bold */
+}
+
+.sidebar-item:hover {
+    background-color: #f2f2f2;
+}
+
+.sidebar-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+    flex-shrink: 0; /* Prevent the icon from shrinking */
 }
 
 .fb-sidebar-right {
@@ -1196,29 +1221,25 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 20px 0;
+    align-items: flex-start; /* Align items to the left */
+    padding: 30px; /* Add padding to the top and left */
     margin: 0;
+}
+
+.fb-sidebar-right .sidebar-item {
+    margin-bottom: 20px; /* Space items by 20px */
 }
 
 .sidebar-item {
     display: flex;
     align-items: center;
     padding: 8px;
-    border-radius: 8px;
     cursor: pointer;
     margin-bottom: 4px;
 }
 
 .sidebar-item:hover {
     background-color: #f2f2f2;
-}
-
-.sidebar-icon {
-    width: 36px;
-    height: 36px;
-    margin-right: 12px;
-    border-radius: 50%;
 }
 
 /* Main Feed */
@@ -1474,18 +1495,34 @@ body {
     z-index: 10;
 }
 
-.post-dropdown button {
+.post-dropdown[style="display: block;"] {
     display: block;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background: none;
-    text-align: left;
-    cursor: pointer;
 }
 
-.post-dropdown button:hover {
+.post-dropdown .dropdown-item.edit-post,
+.post-dropdown .dropdown-item.delete-post {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    width: 100%;
+}
+
+.post-dropdown .dropdown-item.edit-post:hover,
+.post-dropdown .dropdown-item.delete-post:hover,
+.post-dropdown .dropdown-item.report-btn:hover {
     background-color: #f0f0f0;
+}
+
+.post-dropdown .dropdown-item.delete-post:hover {
+    color: #dc3545; /* Optional: Make delete button text red on hover */
+}
+
+.post-dropdown .dropdown-item.report-btn:hover {
+    color: #856404; /* Optional: Maintain report button color on hover */
 }
 
 /* ...existing code... */
@@ -1557,3 +1594,97 @@ body {
 }
 
 /* ...existing code... */
+
+.post-user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-user-info .username {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.post-user-info .handle {
+    font-size: 12px;
+    color: #536471;
+    margin-bottom: 2px;
+}
+
+.post-timestamp {
+    font-size: 12px;
+    color: #536471;
+}
+
+/* ...existing code... */
+
+/* ...existing code... */
+
+.sidebar-link {
+    text-decoration: none; /* Remove underline */
+    color: black; /* Make text black */
+}
+
+/* ...existing code... */
+
+.post-dropdown .dropdown-item.edit-post,
+.post-dropdown .dropdown-item.delete-post {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+}
+
+.post-dropdown .dropdown-item.edit-post:hover {
+    background-color: #f0f0f0;
+}
+
+
+.post-dropdown .dropdown-item.delete-post:hover {
+    background-color: #f0f0f0;
+    color: #dc3545; /* Optional: Make delete button text red on hover */
+}
+
+/* ...existing code... */
+
+/* ...existing code... */
+
+.post-dropdown .dropdown-item.report-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    color: #856404; /* Optional: Different color for report */
+}
+
+.post-dropdown .dropdown-item.report-btn:hover {
+    background-color: #f0f0f0;
+    color: #856404;
+}
+
+/* ...existing code... */
+.post-dropdown .dropdown-item.report-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+
+.post-dropdown .dropdown-item.report-btn:hover {
+    background-color: #f0f0f0;
+    color: #856404;
+}
+
+/* ...existing code... */
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    color: #856404; /* Optional: Different color for report */
+}

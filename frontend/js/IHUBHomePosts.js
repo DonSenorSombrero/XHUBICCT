@@ -378,36 +378,6 @@ function createPostElement(post) {
     return postElement;
 }
 
-// Update the modal post submission
-document.getElementById('submitPostModalBtn')?.addEventListener('click', async () => {
-    const content = document.getElementById('modalTextArea').value;
-    const imageInput = document.getElementById('imageInput');
-    const formData = new FormData();
-
-    formData.append('content', content);
-    if (imageInput.files.length > 0) {
-        formData.append('image', imageInput.files[0]);
-    }
-
-    try {
-        const response = await fetch('/api/posts', {
-            method: 'POST',
-            credentials: 'include',
-            body: formData
-        });
-
-        if (response.ok) {
-            document.getElementById('modal').style.display = 'none';
-            document.getElementById('modalTextArea').value = '';
-            imageInput.value = '';
-            document.getElementById('imagePreviewContainer').style.display = 'none';
-            await fetchPosts(); // Refresh posts
-        }
-    } catch (error) {
-        console.error('Error creating post:', error);
-    }
-});
-
 // Initialize image upload preview
 document.getElementById('imageBtn')?.addEventListener('click', () => {
     document.getElementById('imageInput').click();

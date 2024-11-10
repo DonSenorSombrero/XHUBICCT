@@ -28,11 +28,18 @@ async function loadProfile(profileId) {
 }
 
 function updateProfileUI(profile, isOwnProfile) {
+    const getProfilePicPath = (picPath) => {
+        if (!picPath) return '../uploads/Images/ProfileIMG.png';
+        if (picPath.startsWith('http')) return picPath;
+        if (picPath.startsWith('../uploads')) return picPath;
+        return `../uploads/${picPath}`;
+    };
+    
     // Update basic profile info
     document.getElementById('profileUsername').textContent = profile.username;
     document.getElementById('profileBio').textContent = profile.bio || 'No bio yet';
-    document.getElementById('profilePicture').src = profile.profilePic || 'Images/ProfileIMG.png';
-    document.getElementById('profileBanner').src = profile.bannerPic || 'Images/DefaultBanner.png';
+    document.getElementById('profilePicture').src = getProfilePicPath(profile.profilePic);
+    document.getElementById('profileBanner').src = profile.bannerPic || '../uploads/Images/DefaultBanner.png';
     
     // Update stats
     document.getElementById('postsCount').textContent = profile.postsCount || 0;
@@ -204,7 +211,11 @@ function createPostElement(post) {
     postElement.innerHTML = `
         <div class="post-header">
             <div class="post-header-left">
-                <img src="${post.author.profilePic || 'Images/ProfileIMG.png'}" alt="Profile" class="profile-pic">
+                <img src="${post.author.profilePic ? 
+                    (post.author.profilePic.startsWith('http') ? post.author.profilePic :
+                     post.author.profilePic.startsWith('../uploads') ? post.author.profilePic :
+                     `../uploads/${post.author.profilePic}`) :
+                    '../uploads/Images/ProfileIMG.png'}" alt="Profile" class="profile-pic">
                 <div class="post-user-info">
                     <span class="username">${post.author.username}</span>
                     <span class="post-timestamp">${formatTimestamp(post.createdAt)}</span>

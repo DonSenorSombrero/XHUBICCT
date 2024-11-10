@@ -37,7 +37,11 @@ const createPostElement = (post) => {
     postElement.innerHTML = `
         <div class="post-header">
             <div class="post-header-left">
-                <img src="${post.author.profilePic || '/Images/ProfileIMG.png'}" alt="Profile Picture" class="profile-pic">
+                <img src="${post.author.profilePic ? 
+                    (post.author.profilePic.startsWith('http') ? post.author.profilePic :
+                     post.author.profilePic.startsWith('../uploads') ? post.author.profilePic :
+                     `../uploads/${post.author.profilePic}`) :
+                    '../uploads/Images/ProfileIMG.png'}" alt="Profile Picture" class="profile-pic">
                 <span class="username">${post.author.username}</span>
             </div>
             <button class="post-menu-btn">⋮</button>
@@ -74,7 +78,11 @@ const createPostElement = (post) => {
                     <div class="comment" data-comment-id="${comment._id}">
                         <div class="comment-header">
                             <div class="comment-header-left">
-                                <img src="${comment.user.profilePic || '/Images/ProfileIMG.png'}" alt="Profile Picture" class="comment-profile-pic">
+                                <img src="${comment.user.profilePic ? 
+                                    (comment.user.profilePic.startsWith('http') ? comment.user.profilePic :
+                                     comment.user.profilePic.startsWith('../uploads') ? comment.user.profilePic :
+                                     `../uploads/${comment.user.profilePic}`) :
+                                    '../uploads/Images/ProfileIMG.png'}" alt="Profile Picture" class="comment-profile-pic">
                                 <span class="username">${comment.user.username}</span>
                             </div>
                             <button class="comment-menu-btn">⋮</button>

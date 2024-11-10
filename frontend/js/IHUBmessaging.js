@@ -77,7 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             contactsList.innerHTML = contacts.map(contact => `
                 <div class="contact" data-id="${contact._id}">
-                    <img src="${contact.profilePic || 'Images/default-profile.png'}" alt="Profile">
+                    <img src="${contact.profilePic ? 
+                        (contact.profilePic.startsWith('http') ? contact.profilePic :
+                         contact.profilePic.startsWith('../uploads') ? contact.profilePic :
+                         `../uploads/${contact.profilePic}`) :
+                        '../uploads/Images/ProfileIMG.png'}" alt="Profile">
                     <div class="contact-info">
                         <span class="contact-name">${contact.name || contact.username}</span>
                         ${contact.name ? `<span class="contact-username">@${contact.username}</span>` : ''}
